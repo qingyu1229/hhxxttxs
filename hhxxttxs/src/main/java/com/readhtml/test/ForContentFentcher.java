@@ -13,6 +13,7 @@ public class ForContentFentcher extends CatalogBasicFentcher {
 	private String filePath;
 	private String encoding;
 	Map<Integer,String> contentMap;
+
 	
 	public ForContentFentcher(String filePath, String encoding) {
 		this.filePath = filePath;
@@ -24,7 +25,9 @@ public class ForContentFentcher extends CatalogBasicFentcher {
 	public List<CatalogNode> getCatalog() {
 		
 		Elements elements=getCatalogElements();
-		
+		if(elements.size()==0){
+			return null;
+		}
 		int last_num = 1;
 		CatalogNode cn0 = new CatalogNode();
 		cn0.setId(0);
@@ -66,28 +69,43 @@ public class ForContentFentcher extends CatalogBasicFentcher {
 	@Override
 	public Elements getCatalogElements() {
 		Document doc = getDocument(filePath,encoding);
-		Elements elements=doc.body().child(0).children();
+		Elements elements=formatDocumentToElements(doc);
+		
 		Elements h_elements=new Elements();
 		Elements c_elements=new Elements();
-		int last_index=0;
 		for(int i=0;i<elements.size();i++){
 			Element e=elements.get(i);
 			String tagName=e.tagName();
 			if(("h1".equals(tagName)||"h2".equals(tagName)||"h3".equals(tagName)||"h4".equals(tagName)||"h5".equals(tagName))){
 				h_elements.add(e);
-				contentMap.put(h_elements.size()-2, c_elements.html());
-				c_elements.empty();
-				last_index=i;
+				String content=c_elements==null?"":c_elements.toString();
+				contentMap.put(h_elements.size()-2, content);
+				if(c_elements!=null){
+					c_elements.empty();
+					c_elements.clear();
+				}
 			}else {
 				if(h_elements.size()>0){
 					c_elements.add(e.clone());
 				}
 			}
 		}
+		//处理最后一段
+		String content=c_elements==null?"":c_elements.toString();
+		contentMap.put(h_elements.size()-1, content);
 		return h_elements;
 	}
 
 
+	private Elements formatDocumentToElements(Document doc){
+		Elements elements=new Elements();
+		Elements rootElements=doc.getElementsByAttributeValueStarting("class", "Section");
+		
+		for(Element e:rootElements){
+			elements.addAll(e.children());
+		}
+		return elements;
+	}
 
 	@Override
 	public int checkClassValue(Element element) {
@@ -103,22 +121,7 @@ public class ForContentFentcher extends CatalogBasicFentcher {
 		return -1;
 	}
 	
-	private int getPIdByDepth(int depth,int id){
-		if(depth==0){
-			return map.get(id).getP_id();
-		}else{
-			int pid= map.get(id).getP_id();
-			return getPIdByDepth(depth-1,pid);
-		}
-	}
 	
-	private int getOrderByDepth(int depth,int id){
-		if(depth==0){
-			return map.get(id).getOrder()+1;
-		}else{
-			int pid= map.get(id).getP_id();
-			return getOrderByDepth(depth-1,pid);
-		}
-	}
+
 
 }

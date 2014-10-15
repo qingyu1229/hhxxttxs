@@ -1,5 +1,6 @@
 package com.readhtml.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.nodes.Document;
@@ -18,13 +19,28 @@ public class SmartFentcher extends CatalogBasicFentcher {
 	
 	@Override
 	public List<CatalogNode> getCatalog() {
-		Document doc= getDocument(filePath,encoding);
-		Elements elements= doc.getElementsByAttributeValueStarting("class", "MsoToc");
-		if(elements.size()>0){
-			return new ForCatalogFentcher(filePath,encoding).getCatalog();
-		}else{
-			return new ForContentFentcher(filePath,encoding).getCatalog();
+		List<CatalogNode> list=new ArrayList<CatalogNode>();
+		
+		
+		try {
+			list=new ForContentFentcher(filePath,encoding).getCatalog();
+			
+			if(list==null||list.size()==0){
+				list=new ForCatalogFentcher(filePath,encoding).getCatalog();
+			}
+		} catch (Exception e) {
+			list=new ExceptiveFentcher(filePath,encoding).getCatalog();
+			e.printStackTrace();
 		}
+		
+		
+		if(list==null||list.size()==0){
+			list=new ExceptiveFentcher(filePath,encoding).getCatalog();
+		}
+		
+		
+		
+		return list;
 	}
 	
 	@Override
