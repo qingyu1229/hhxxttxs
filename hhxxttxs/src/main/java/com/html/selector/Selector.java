@@ -7,6 +7,4 @@ public interface Selector {
 	 
 	 public Selector setOnBeforeOperation(OnBeforeOperation obo);
 	 
-	 
-	 
 }
