@@ -74,6 +74,9 @@ public class ForCatalogFentcher extends CatalogBasicFentcher {
 
 		elements = doc.body().getElementsByAttributeValueStarting("class",
 				"MsoToc");
+		if(elements==null){
+			return null;
+		}
 
 		Elements c_elements = elements.clone();
 		System.out.println(c_elements.size());

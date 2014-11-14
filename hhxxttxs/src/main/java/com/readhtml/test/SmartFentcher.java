@@ -16,6 +16,7 @@ public class SmartFentcher extends CatalogBasicFentcher {
 		this.encoding = encoding;
 	}
 	
+	public SmartFentcher(){};
 	
 	@Override
 	public List<CatalogNode> getCatalog() {

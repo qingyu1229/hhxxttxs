@@ -1,26 +1,22 @@
 package com.xuexi.hhxxttxs;
 
-import java.io.File;
-import java.io.IOException;
+import org.apache.commons.lang3.math.NumberUtils;
 
-import org.apache.commons.io.FileUtils;
 
 public class Test {
-	public final static void test(String s) {
-		try {
-			byte[] b= FileUtils.readFileToByteArray(new File(s));
-			
-			FileUtils.writeByteArrayToFile(new File("c:/test.xls"), b);
-			
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	public static void main(String[] args) {
-		test("d:/aa.rar");
+		Integer count=127;
+		System.out.println(Integer.toBinaryString(128));
 	}
+	 public static byte[] intToByte4(int i) {  
+	        byte[] targets = new byte[4];  
+	        targets[3] = (byte) (i & 0xFF);  
+	        targets[2] = (byte) (i >> 8 & 0xFF);  
+	        targets[1] = (byte) (i >> 16 & 0xFF);  
+	        targets[0] = (byte) (i >> 24 & 0xFF);  
+	        return targets;  
+	    } 
+	 
+	
 }
