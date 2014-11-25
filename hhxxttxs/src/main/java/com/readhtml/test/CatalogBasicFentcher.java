@@ -17,11 +17,6 @@ public abstract class CatalogBasicFentcher implements CatalogFentcher {
 	List<CatalogNode> list=new ArrayList<CatalogNode>();
 	Map<Integer,CatalogNode> map=new HashMap<Integer,CatalogNode>();
 	
-	@Override
-	public List<CatalogNode> getCatalog() {
-		return null;
-	}
-	
 	public String cleanoutNodeValue(String v){
 		if(v.contains("...")){
 			return v.split("\\...")[0];
