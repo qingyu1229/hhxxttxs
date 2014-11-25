@@ -13,13 +13,12 @@ public class ForCatalogFentcher extends CatalogBasicFentcher {
 
 	private String filePath;
 	private String encoding;
-	Map<Integer,String> contentMap;
-
+	Map<Integer, String> contentMap;
 
 	public ForCatalogFentcher(String filePath, String encoding) {
 		this.filePath = filePath;
 		this.encoding = encoding;
-		contentMap=new HashMap<Integer,String>();
+		contentMap = new HashMap<Integer, String>();
 	}
 
 	@Override
@@ -27,13 +26,13 @@ public class ForCatalogFentcher extends CatalogBasicFentcher {
 		Elements elements = getCatalogElements();
 
 		int last_num = 1;
-		
+
 		CatalogNode cn0 = new CatalogNode();
 		cn0.setId(0);
 		cn0.setText(cleanoutNodeValue(elements.get(0).text()));
 		cn0.setP_id(-1);
 		cn0.setOrder(1);
-		cn0.setContent(contentMap.get(1));
+		cn0.setContent(contentMap.get(0));
 		list.add(cn0);
 		map.put(0, cn0);
 		
@@ -42,7 +41,7 @@ public class ForCatalogFentcher extends CatalogBasicFentcher {
 			int num = checkClassValue(element);
 			CatalogNode cn = new CatalogNode();
 			cn.setId(i);
-			cn.setContent(contentMap.get(i+1));
+			cn.setContent(contentMap.get(i));
 			cn.setText(cleanoutNodeValue(element.text()));
 			if (last_num < num) {
 				cn.setP_id(i - 1);
@@ -51,13 +50,11 @@ public class ForCatalogFentcher extends CatalogBasicFentcher {
 				cn.setP_id(map.get(i - 1).getP_id());
 				cn.setOrder(map.get(i - 1).getOrder() + 1);
 			} else if (last_num > num) {
-				/*cn.setP_id(map.get(map.get(i - 1).getP_id()).getP_id());
-				cn.setOrder(map.get(map.get(i - 1).getP_id()).getOrder() + 1);*/
-				
-				cn.setP_id(getPIdByDepth(last_num - num,map.get(i - 1).getId()));
-				cn.setOrder(getOrderByDepth(last_num - num,map.get(i - 1).getId()));
+				cn.setP_id(getPIdByDepth(last_num - num, map.get(i - 1).getId()));
+				cn.setOrder(getOrderByDepth(last_num - num, map.get(i - 1)
+						.getId()));
 			}
-			
+
 			map.put(i, cn);
 			list.add(cn);
 			last_num = num;
@@ -70,72 +67,71 @@ public class ForCatalogFentcher extends CatalogBasicFentcher {
 	 */
 	public Elements getCatalogElements() {
 		Elements elements = null;
-		Document doc = getDocument(filePath,encoding);
-		if(doc.select("p.MsoTocHeading")!=null){
+		Document doc = getDocument(filePath, encoding);
+		if (doc.select("p.MsoTocHeading") != null) {
 			doc.select("p.MsoTocHeading").remove();
 		}
-	
-		
+
 		elements = doc.body().getElementsByAttributeValueStarting("class",
 				"MsoToc");
-		
-		Elements c_elements=elements.clone();
+
+		Elements c_elements = elements.clone();
 		System.out.println(c_elements.size());
-		List<String> hrefList=new ArrayList<String>();
-		
-		for(int i=0;i<elements.size();i++){
-			Elements a_elements= elements.get(i).getElementsByTag("a");
-			for(Element e:a_elements){
-				String href= e.attr("href");
-				if(href.startsWith("#_Toc")){
+		List<String> hrefList = new ArrayList<String>();
+
+		for (int i = 0; i < elements.size(); i++) {
+			Elements a_elements = elements.get(i).getElementsByTag("a");
+			for (Element e : a_elements) {
+				String href = e.attr("href");
+				if (href.startsWith("#_Toc")) {
 					hrefList.add(href.replace("#", ""));
 				}
 			}
 		}
+
+		Elements p_elements = doc.select("body > div > p,body > div > div,body > div > table");
+		// System.out.println("listSize:"+hrefList.size()+"   p_elementsSize:"+p_elements.size());
+
+		int j = 0;
+		boolean isCatalog = false;
+		Elements temp_elements = new Elements();
 		
-		
-		Elements p_elements= doc.select("p");
-		//System.out.println("listSize:"+hrefList.size()+"   p_elementsSize:"+p_elements.size());
-		
-		int j=0;
-		boolean isCatalog=false;
-		Elements temp_elements=new Elements();
-		
-		for(int i=0;i<p_elements.size();i++){
-			Elements pa_elements= p_elements.get(i).getElementsByTag("a");
-			
-			for(Element e:pa_elements){
-				String name= e.attr("name");
-				if(hrefList.get(j).equals(name)){
-					isCatalog=true;
-					break;
+		for (int i = 0; i < p_elements.size(); i++) {
+			Elements pa_elements = p_elements.get(i).getElementsByTag("a");
+			if (pa_elements.size() > 0) {
+
+				for (Element e : pa_elements) {
+					String name = e.attr("name");
+					if (hrefList.get(j).equals(name)) {
+						isCatalog = true;
+						break;
+					}
 				}
 			}
-			
-			
-			
-			if(isCatalog){
+
+			if (isCatalog) {
 				contentMap.put(j++, temp_elements.toString());
 				temp_elements.empty();
 				temp_elements.clear();
-				isCatalog=false;
+				isCatalog = false;
 				continue;
-			}else{
+			} else {
 				temp_elements.add(p_elements.get(i));
 			}
 		}
-		String content=c_elements==null?"":c_elements.toString();
-		contentMap.put(contentMap.size(), content);
+		String content = c_elements == null ? "" : temp_elements.toString();
 		
+		contentMap.put(contentMap.size(), content);
+
 		return c_elements;
 	}
-	
+
 	/**
 	 * 获取节点权值
 	 */
 	@Override
 	public int checkClassValue(Element element) {
-		String classValue=element.attr("class");
+		String classValue = element.attr("class");
 		if (classValue.matches("MsoToc\\d{1,2}")) {
 			String numStr = classValue.replace("MsoToc", "");
 			try {
@@ -146,6 +142,5 @@ public class ForCatalogFentcher extends CatalogBasicFentcher {
 		}
 		return -1;
 	}
-	
 
 }

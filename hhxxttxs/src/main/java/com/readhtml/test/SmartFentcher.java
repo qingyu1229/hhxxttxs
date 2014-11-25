@@ -20,8 +20,6 @@ public class SmartFentcher extends CatalogBasicFentcher {
 	@Override
 	public List<CatalogNode> getCatalog() {
 		List<CatalogNode> list=new ArrayList<CatalogNode>();
-		
-		
 		try {
 			list=new ForContentFentcher(filePath,encoding).getCatalog();
 			
@@ -32,14 +30,9 @@ public class SmartFentcher extends CatalogBasicFentcher {
 			list=new ExceptiveFentcher(filePath,encoding).getCatalog();
 			e.printStackTrace();
 		}
-		
-		
 		if(list==null||list.size()==0){
 			list=new ExceptiveFentcher(filePath,encoding).getCatalog();
 		}
-		
-		
-		
 		return list;
 	}
 	

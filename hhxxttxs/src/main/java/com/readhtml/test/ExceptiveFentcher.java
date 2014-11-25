@@ -57,6 +57,7 @@ public class ExceptiveFentcher extends CatalogBasicFentcher{
 	public Elements getCatalogElements() {
 		Document doc = getDocument(filePath,encoding);
 		Elements p_elements= doc.select("body > div > p,body > div > div");
+		System.out.println(p_elements);
 		return p_elements;
 	}
 

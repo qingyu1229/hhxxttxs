@@ -19,7 +19,6 @@ public abstract class CatalogBasicFentcher implements CatalogFentcher {
 	
 	@Override
 	public List<CatalogNode> getCatalog() {
-		
 		return null;
 	}
 	

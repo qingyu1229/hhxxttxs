@@ -24,15 +24,13 @@ public class ReadHtml {
 		/*String fileString = FileUtils.readFileToString(new File(
 				"d:/1411954094515.html"), encoding);
 */
-		CatalogFentcher cf=new ForCatalogFentcher("d:/1413352405140.html","gb2312");
+		//CatalogFentcher cf=new ForCatalogFentcher("d:/1413352405140.html","gb2312");
 		//CatalogFentcher cf=new ForContentFentcher("d:/1412926968625.html","gb2312");
 		//CatalogFentcher cf=new SmartFentcher("d:/1411953924640.html","utf-8");
 		//cf.getCatalog();
 		
-		
 		//CatalogFentcher cf=new SmartFentcher("d:/1413250053468.html","gb2312");
-		//CatalogFentcher cf=new ExceptiveFentcher("d:/1413250053468.html","gb2312");
-		
+		CatalogFentcher cf=new ExceptiveFentcher("D:/giveqingyu/5/1413366280046.html","gb2312");
 		
 		FileUtils.writeStringToFile(new File("d:/t112312.txt"), cf.getCatalog().toString());
 		
