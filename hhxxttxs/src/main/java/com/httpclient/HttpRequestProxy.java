@@ -50,13 +50,13 @@ public class HttpRequestProxy {
 		paramsBean.setVersion(HttpVersion.HTTP_1_1);
 		//设置内容编码
 		paramsBean.setContentCharset("UTF-8");
-		//遇到异常是否继续
+		//
 		paramsBean.setUseExpectContinue(false);
 		//User_agent
 		params.setParameter(CoreProtocolPNames.USER_AGENT, config.getUserAgentString());
-		//Socket连接超时
+		//连接建立后数据传输超时时长
 		params.setIntParameter(CoreConnectionPNames.SO_TIMEOUT, config.getSocketTimeout());
-		//连接超时
+		//建立连接超时时长
 		params.setIntParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, config.getConnectionTimeout());
 		//是否自动处理重定向
 		params.setBooleanParameter("http.protocol.handle-redirects", false);
