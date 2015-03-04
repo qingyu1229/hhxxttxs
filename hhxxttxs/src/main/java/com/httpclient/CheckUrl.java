@@ -14,7 +14,7 @@ import org.junit.Test;
 public class CheckUrl {
 
 	public static void main(String[] args) throws IOException {
-		FileOutputStream fos=new FileOutputStream(	new File("D:\\test3.xlsx"));
+		FileOutputStream fos=new FileOutputStream(	new File("e:\\11.xlsx"));
 		XSSFWorkbook wfb = new XSSFWorkbook();
 		XSSFSheet sheet1= wfb.createSheet("s1");
 		int count=0;
