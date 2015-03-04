@@ -2,7 +2,6 @@ package com.html.path;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -77,7 +76,6 @@ public class GetPath {
 					}
 					path.append(">");
 					return checkTextPath(child,path);
-					
 				}
 			}
 		}
@@ -141,7 +139,7 @@ public class GetPath {
 		    
 		    if(Integer.valueOf(strSecore)>secore){
 		    	maxSecoreElement=e;
-		    	  secore=Integer.valueOf(strSecore);
+		    	secore=Integer.valueOf(strSecore);
 		    }
 		}
 		return maxSecoreElement;

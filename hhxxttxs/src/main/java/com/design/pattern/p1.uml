@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_6tLPUYtWEeS1mvMVJ8XTvg">
+  <name xsi:nil="true"/>
+  <elementImport xmi:id="_68Em8otWEeS1mvMVJ8XTvg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_68Em9otWEeS1mvMVJ8XTvg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_68Em-ItWEeS1mvMVJ8XTvg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_62Q54ItWEeS1mvMVJ8XTvg" name="com">
+    <packagedElement xmi:type="uml:Package" xmi:id="_62j00ItWEeS1mvMVJ8XTvg" name="design">
+      <packagedElement xmi:type="uml:Package" xmi:id="_62j00YtWEeS1mvMVJ8XTvg" name="pattern">
+        <packagedElement xmi:type="uml:Class" xmi:id="_62tl0ItWEeS1mvMVJ8XTvg" name="UserDaoImpl" clientDependency="_648acItWEeS1mvMVJ8XTvg _hisHZYtXEeS1mvMVJ8XTvg">
+          <ownedAttribute xmi:id="_67exEYtWEeS1mvMVJ8XTvg" name="userList" visibility="package" type="_67exEItWEeS1mvMVJ8XTvg"/>
+          <interfaceRealization xmi:id="_648acItWEeS1mvMVJ8XTvg" name="UserDao" supplier="_63TbsotWEeS1mvMVJ8XTvg" client="_62tl0ItWEeS1mvMVJ8XTvg" contract="_63TbsotWEeS1mvMVJ8XTvg"/>
+          <ownedOperation xmi:id="_68Em8ItWEeS1mvMVJ8XTvg" name="getAllUser" visibility="public">
+            <ownedParameter xmi:id="_68Em8YtWEeS1mvMVJ8XTvg" name="return" type="_64pfg4tWEeS1mvMVJ8XTvg" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_68Em84tWEeS1mvMVJ8XTvg" name="addUser" visibility="public">
+            <ownedParameter xmi:id="_68Em9ItWEeS1mvMVJ8XTvg" name="user" type="_63TbsItWEeS1mvMVJ8XTvg"/>
+            <ownedParameter xmi:id="_68Em9YtWEeS1mvMVJ8XTvg" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_63TbsItWEeS1mvMVJ8XTvg" name="User" clientDependency="_gWPiZYtXEeS1mvMVJ8XTvg">
+          <generalization xmi:id="_aHC1NItXEeS1mvMVJ8XTvg" general="_62tl0ItWEeS1mvMVJ8XTvg"/>
+          <ownedAttribute xmi:id="_68Em94tWEeS1mvMVJ8XTvg" name="name" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_68Em-YtWEeS1mvMVJ8XTvg" name="age" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedAttribute>
+          <ownedOperation xmi:id="_68Em-otWEeS1mvMVJ8XTvg" name="getName" visibility="public">
+            <ownedParameter xmi:id="_68Em-4tWEeS1mvMVJ8XTvg" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:id="_68Em_ItWEeS1mvMVJ8XTvg" name="setName" visibility="public">
+            <ownedParameter xmi:id="_68Em_YtWEeS1mvMVJ8XTvg" name="name">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:id="_68Em_otWEeS1mvMVJ8XTvg" name="getAge" visibility="public">
+            <ownedParameter xmi:id="_68Em_4tWEeS1mvMVJ8XTvg" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:id="_68EnAItWEeS1mvMVJ8XTvg" name="setAge" visibility="public">
+            <ownedParameter xmi:id="_68EnAYtWEeS1mvMVJ8XTvg" name="age">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:id="_68OX8ItWEeS1mvMVJ8XTvg" name="toString" visibility="public">
+            <ownedParameter xmi:id="_68OX8YtWEeS1mvMVJ8XTvg" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_63TbsYtWEeS1mvMVJ8XTvg" name="Test" clientDependency="_0dcEtYtYEeS1mvMVJ8XTvg">
+          <ownedOperation xmi:id="_68OX8otWEeS1mvMVJ8XTvg" name="main" visibility="public" isStatic="true">
+            <ownedParameter xmi:id="_68OX84tWEeS1mvMVJ8XTvg" name="args">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_68OX9ItWEeS1mvMVJ8XTvg" value="*"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_68OX9YtWEeS1mvMVJ8XTvg"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_63TbsotWEeS1mvMVJ8XTvg" name="UserDao" clientDependency="_zWNW5YtYEeS1mvMVJ8XTvg">
+          <ownedOperation xmi:id="_68OX9otWEeS1mvMVJ8XTvg" name="getAllUser" visibility="public">
+            <ownedParameter xmi:id="_68OX94tWEeS1mvMVJ8XTvg" name="return" type="_64pfg4tWEeS1mvMVJ8XTvg" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_68OX-ItWEeS1mvMVJ8XTvg" name="addUser" visibility="public">
+            <ownedParameter xmi:id="_68OX-YtWEeS1mvMVJ8XTvg" name="user" type="_63TbsItWEeS1mvMVJ8XTvg"/>
+            <ownedParameter xmi:id="_68OX-otWEeS1mvMVJ8XTvg" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_cw6aeotXEeS1mvMVJ8XTvg" name="A_&lt;user>_&lt;userDaoImpl>" memberEnd="_cw6ae4tXEeS1mvMVJ8XTvg _cw6afotXEeS1mvMVJ8XTvg">
+          <ownedEnd xmi:id="_cw6ae4tXEeS1mvMVJ8XTvg" name="user" type="_63TbsItWEeS1mvMVJ8XTvg" association="_cw6aeotXEeS1mvMVJ8XTvg">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cw6afItXEeS1mvMVJ8XTvg" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cw6afYtXEeS1mvMVJ8XTvg" value="1"/>
+          </ownedEnd>
+          <ownedEnd xmi:id="_cw6afotXEeS1mvMVJ8XTvg" name="userDaoImpl" type="_62tl0ItWEeS1mvMVJ8XTvg" association="_cw6aeotXEeS1mvMVJ8XTvg">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cw6af4tXEeS1mvMVJ8XTvg" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cw6agItXEeS1mvMVJ8XTvg" value="1"/>
+          </ownedEnd>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_64pfgItWEeS1mvMVJ8XTvg" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_64pfgYtWEeS1mvMVJ8XTvg" name="util">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_64pfgotWEeS1mvMVJ8XTvg" name="ArrayList"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_64pfg4tWEeS1mvMVJ8XTvg" name="List"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_67exEItWEeS1mvMVJ8XTvg" name="List&lt;User>"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_gWPiZYtXEeS1mvMVJ8XTvg" name="Dependency1" supplier="_62tl0ItWEeS1mvMVJ8XTvg" client="_63TbsItWEeS1mvMVJ8XTvg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_hisHZYtXEeS1mvMVJ8XTvg" name="Dependency2" supplier="_63TbsItWEeS1mvMVJ8XTvg" client="_62tl0ItWEeS1mvMVJ8XTvg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_zWNW5YtYEeS1mvMVJ8XTvg" name="Dependency3" supplier="_63TbsYtWEeS1mvMVJ8XTvg" client="_63TbsotWEeS1mvMVJ8XTvg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_0dcEtYtYEeS1mvMVJ8XTvg" name="Dependency4" supplier="_63TbsotWEeS1mvMVJ8XTvg" client="_63TbsYtWEeS1mvMVJ8XTvg"/>
+</uml:Model>

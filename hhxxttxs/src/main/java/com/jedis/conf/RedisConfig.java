@@ -11,7 +11,7 @@ public class RedisConfig {
 	private static final int retryNum=5;
 	
 	
-	private static final String ip="182.254.133.252";
+	private static final String ip="127.0.0.1";
 	private static final int port=6379;
 
 	public static int getMaxactive() {

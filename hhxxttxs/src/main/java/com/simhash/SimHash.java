@@ -39,15 +39,19 @@ public class SimHash {
         }
         return fingerprint;
     }
+    
     private BigInteger hash(String source) {
         if (source == null || source.length() == 0) {
             return new BigInteger("0");
         } else {
             char[] sourceArray = source.toCharArray();
             BigInteger x = BigInteger.valueOf(((long) sourceArray[0]) << 7);
+            System.out.println("source:"+source+" X:"+x);
             BigInteger m = new BigInteger("1000003");
+            
             BigInteger mask = new BigInteger("2").pow(this.hashbits).subtract(
                     new BigInteger("1"));
+            System.out.println("Mask:"+mask);
             for (char item : sourceArray) {
                 BigInteger temp = BigInteger.valueOf((long) item);
                 x = x.multiply(m).xor(temp).and(mask);
@@ -59,6 +63,11 @@ public class SimHash {
             return x;
         }
     }
+    /**
+     * 海明距离
+     * @param other
+     * @return
+     */
     public int hammingDistance(SimHash other) {
         BigInteger m = new BigInteger("1").shiftLeft(this.hashbits).subtract(
                 new BigInteger("1"));

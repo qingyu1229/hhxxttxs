@@ -1,13 +1,28 @@
 package com.xuexi.hhxxttxs;
 
-import org.apache.commons.lang3.math.NumberUtils;
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 
 public class Test {
 
 	public static void main(String[] args) {
-		Integer count=127;
-		System.out.println(Integer.toBinaryString(128));
+		try {
+			Document doc= Jsoup.connect("http://nyj.yw.gov.cn/zcfg/nyb/201407/t20140723_574953.html").get();
+			Elements elements= doc.select("#myTable > tbody > tr:nth-child(1) > td > span");
+			System.out.println(elements);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		//Integer count=127;
+		//System.out.println(Integer.toBinaryString(128));
 	}
 	 public static byte[] intToByte4(int i) {  
 	        byte[] targets = new byte[4];  

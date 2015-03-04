@@ -3,9 +3,7 @@ package com.readhtml.test2;
 import java.util.List;
 
 import org.jsoup.select.Elements;
-import org.springframework.stereotype.Service;
 
-@Service
 public class CwgwzxmrxFentcher extends BasicFentcher{
 	
 	private String key="财务顾问咨询每日快讯";

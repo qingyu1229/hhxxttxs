@@ -56,9 +56,9 @@ public class JedisUtil {
             }  
         }else{  
             pool = maps.get(key);  
-        }  
+        }
         return pool;  
-    }  
+    }
   
     /** 
      *类级的内部类，也就是静态的成员式内部类，该内部类的实例与外部类的实例 
@@ -97,6 +97,7 @@ public class JedisUtil {
                  // 销毁对象    
                 getPool().returnBrokenResource(jedis);    
             }  
+            System.out.println("count:"+count);
             count++;  
         }while(jedis==null&&count<RedisConfig.getRetrynum());  
         return jedis;  
